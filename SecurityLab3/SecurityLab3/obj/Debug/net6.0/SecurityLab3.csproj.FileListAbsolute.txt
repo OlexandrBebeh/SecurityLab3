@@ -1,0 +1,15 @@
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\SecurityLab3.exe
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\SecurityLab3.deps.json
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\SecurityLab3.runtimeconfig.json
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\SecurityLab3.dll
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\ref\SecurityLab3.dll
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\SecurityLab3.pdb
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.AssemblyInfo.cs
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.dll
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\ref\SecurityLab3.dll
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.pdb
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.genruntimeconfig.cache
