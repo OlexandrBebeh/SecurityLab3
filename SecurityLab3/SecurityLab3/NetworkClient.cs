@@ -6,10 +6,13 @@ namespace SecurityLab3
 {
     public class NetworkClient
     {
+        public enum GameMode
+        { Lcg, Mt, BetterMt}
+        
         public class CasinoAccount
         {
             public String accountId { get; set; }
-            public String accountMoney { get; set; }
+            public long accountMoney { get; set; }
             public String accountDeletionTime { get; set; }
         }
         
@@ -19,26 +22,35 @@ namespace SecurityLab3
             public CasinoAccount responseAccount { get; set; }
             public int responseRealNumber { get; set; }
         }
+        
         private static readonly  HttpClient client = new HttpClient();
 
         private readonly String casinoURL = "http://95.217.177.249/casino/";
         
-        private readonly String createAccParam = "createacc";
+        private readonly String createAccParam = "createacc?";
         
         private readonly String playParam = "play";
-        
-        private CasinoAccount account = new ();
 
+        private CasinoAccount account = new();
 
+        public List<CasinoResponse> history;
         public void InitAccount(String name)
         {
-            var values = new Dictionary<string, string>
-            {
-                { "id", name }
-            };
-            var content = new FormUrlEncodedContent(values);
+            var response = client.GetAsync(
+                casinoURL +
+                createAccParam + 
+                "id=" + 
+                name);
+        }
 
-            var response = client.GetAsync("http://www.example.com/recepticle.aspx?id={name}");
+        public void Play(long number, GameMode mod)
+        {
+            var response = client.GetAsync(
+                casinoURL + 
+                playParam +
+                mod.ToString("g") 
+                + "?");
+            
         }
     }
 }
