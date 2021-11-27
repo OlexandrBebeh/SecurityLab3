@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace SecurityLab3
@@ -35,26 +36,34 @@ namespace SecurityLab3
 
         private readonly String playParam = "play";
 
-        private CasinoAccount account = new();
+        public CasinoAccount account = new();
 
-        public List<CasinoResponse> history;
+        public List<long> history = new();
 
-        public async void InitAccount(String name)
+        public async Task InitAccount(string name)
         {
-            var response = await client.GetAsync($"{casinoURL}{createAccParam}?id={account.id}");
+            var response = await client.GetAsync($"{casinoURL}{createAccParam}?id={name}");
             
             var text = await response.Content.ReadAsStringAsync();
             var json = JsonConvert.DeserializeObject<CasinoAccount>(text);
+
+            account = json;
         }
 
-        public async void Play(int bet, long number, GameMode mod)
+        public async Task Play(int bet, long number, GameMode mod)
         {
             var response =
                 await client.GetAsync(
-                    $"{casinoURL}{playParam}{mod.ToString("g")}?id={account.id}&bet={bet}&number={number}");
+                    $"{casinoURL}{playParam}{mod:g}?id={account.id}&bet={bet}&number={(int)number}");
 
             var text = await response.Content.ReadAsStringAsync();
             var json = JsonConvert.DeserializeObject<CasinoResponse>(text);
+
+            if (json != null)
+            {
+                history.Add(json.realNumber);
+                account.money = json.account.money;
+            }
         }
     }
 }

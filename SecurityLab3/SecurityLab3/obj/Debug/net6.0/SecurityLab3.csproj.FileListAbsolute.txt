@@ -13,3 +13,6 @@ C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.
 C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\ref\SecurityLab3.dll
 C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.pdb
 C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.genruntimeconfig.cache
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\obj\Debug\net6.0\SecurityLab3.csproj.CopyComplete
+C:\Users\PC\Desktop\pyhon\SecurityLab3\SecurityLab3\SecurityLab3\bin\Debug\net6.0\BouncyCastle.Crypto.dll
