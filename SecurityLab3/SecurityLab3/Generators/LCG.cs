@@ -1,13 +1,13 @@
 ﻿namespace SecurityLab3.Generators
 {
-    public class LCG
+    public class Lcg
     {
-        public static readonly long M = 4294967296; // aka 2^32
+        public const long M = 4294967296; // 2^32
         private long A;
         private long C;
         private long last;
         
-        public LCG(long a, long c, long seed)
+        public Lcg(long a, long c, long seed)
         {
             A = a;
             C = c;
@@ -16,7 +16,7 @@
         
         public long Next()
         {
-            last = ((A * last) + C) % M;
+            last = (A * last + C) % M;
 
             return last;
         }

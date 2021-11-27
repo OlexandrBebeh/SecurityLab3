@@ -5,7 +5,7 @@ namespace SecurityLab3
 {
     public class GeneratorsHacker
     {
-        public LCG FindLCG(long[] seq)
+        public Lcg FindLcg(long[] seq)
         {
             if (seq.Length < 3)
             {
@@ -16,10 +16,10 @@ namespace SecurityLab3
             var x1 = seq[1];
             var x2 = seq[2];
 
-            var a = ((x1 - x2) / (x0 - x1)) % LCG.M;
-            var b = ((x1 - a * x0)) % LCG.M;
+            var a = ((x1 - x2) / (x0 - x1)) % Lcg.M;
+            var b = (x1 - a * x0) % Lcg.M;
 
-            return new LCG(a, b, x2);
+            return new Lcg(a, b, x2);
         }
     }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zgIOwicb7PEZYF4CyxvtVJLUCMKB7az10IY8Tiw0DpHzTrnyf2BKu4wKEJIO2GtZVLZWkl79MtU3raNserOACw==",
+  "dgSpecHash": "zQcmTFlUObSY7bDKWQsJR4p4aTJI4ikVbe65H6jtkT9F835vmreVnVKcdZ9D6JgUtSRbkji5Wik+z+BDJ6+CJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\pyhon\\SecurityLab3\\SecurityLab3\\SecurityLab3\\SecurityLab3.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
