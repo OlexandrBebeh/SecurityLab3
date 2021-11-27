@@ -25,14 +25,19 @@
 
         private long seed;
 
-        public void MersenneTwisterRandomizer(long[] array)
+        public long[] GetSequence()
+        {
+            return sequence;
+        }
+
+        public Mt(long[] array)
         {
             index = 0;
             sequence = array;
             Twist();
         }
 
-        public void MersenneTwisterRandomizer(long s)
+        public Mt(long s)
         {
             seed = s;
             index = N + 1;
