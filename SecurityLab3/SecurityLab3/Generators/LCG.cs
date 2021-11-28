@@ -20,5 +20,14 @@
 
             return last;
         }
+
+        public long GetA()
+        {
+            return A;
+        }
+        public long GetC()
+        {
+            return C;
+        }
     }
 }

@@ -24,16 +24,16 @@ namespace SecurityLab3
                 n = true;
             }
 
-            var v2 = new BigInteger($"{v1}").ModInverse(new BigInteger($"{Lcg.M}")).LongValue;
+            var v2 = new BigInteger(v1.ToString()).ModInverse(new BigInteger(Lcg.M.ToString())).LongValue;
             var a = (x1 - x2) * v2 % Lcg.M;
             if (n)
             {
                 a = -a;
             }
             
-            var b = (x1 - a * x0) % Lcg.M;
+            var c = (x1 - a * x0) % Lcg.M;
             
-            return new Lcg(a, b, x2);
+            return new Lcg(a, c, x2);
         }
     }
 }

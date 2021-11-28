@@ -1,17 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using SecurityLab3;
-using SecurityLab3.Generators;
 
 class Program
 {
-    public static async Task Main()
+    private const int MoneyToWin = 1000000;
+    private const int BetAfterFindGenerator = 100;
+
+    public static async Task WinLcg()
     {
-        /*var client = new NetworkClient();
+        var client = new NetworkClient();
         
         await client.InitAccount(Guid.NewGuid().ToString());
+        Console.WriteLine("Preparation before find LCG generator:");
+        Console.WriteLine("Play three games with bet 1");
 
         for (int i = 0; i < 3; i++)
         {
@@ -19,29 +21,67 @@ class Program
         }
 
         var lcg = GeneratorsHacker.FindLcg(client.history.ToArray());
+        Console.WriteLine($"Find LCG: a = {lcg.GetA()}, c = {lcg.GetC()}");
 
-        while (client.account.money < 1000000)
+        while (client.account.money < MoneyToWin)
         {
-            await client.Play(100,lcg.Next(),GameMode.Lcg);
-        }
-        
-        client = new NetworkClient();*/
+            var dit = (int)lcg.Next();
+            Console.WriteLine($"Play with bet: {BetAfterFindGenerator} and realNumber: {dit}");
 
-        var m = new Mt(8675309);
+            await client.Play(BetAfterFindGenerator, dit,GameMode.Lcg);
 
-        var p = new MtReverse();
-        
-        p.Init(m.GetSequence());
-
-        while (true)
-        {
-            var p1 = m.Next() ;
-            var p2 = p.Predict();
-            if (p1 != p2)
+            if (client.history[^1] == dit)
             {
-                break;
+                Console.WriteLine($"Win with bet: {BetAfterFindGenerator} and realNumber: {dit}");
             }
+            else
+            {
+                Console.WriteLine($"Lose with bet: {BetAfterFindGenerator} and realNumber: {dit} != {client.history[^1]}");
+            }
+            
+            Console.WriteLine($"Current money: {client.account.money}");
         }
+        Console.WriteLine("Done");
+
+    }
+    public static async Task WinMt(GameMode mode)
+    {
+        var client = new NetworkClient();
+        
+        await client.InitAccount(Guid.NewGuid().ToString());
+        Console.WriteLine("Preparation before find state of MT19937 generator:");
+        Console.WriteLine($"Play {MtState.N} with mode {mode:g} games with bet 1");
+        for (int i = 0; i < MtState.N; i++)
+        {
+            await client.Play(1,1, mode);
+        }
+
+        var reverse = new MtState();
+        
+        reverse.Init(client.history.ToArray());
+        Console.WriteLine($"Find state of MT19937 generator");
+
+        while (client.account.money < MoneyToWin)
+        {
+            var dit = reverse.Predict();
+            await client.Play(BetAfterFindGenerator,dit, mode);
+            if (client.history[^1] == dit)
+            {
+                Console.WriteLine($"Win with bet: {BetAfterFindGenerator} and realNumber: {dit}");
+            }
+            else
+            {
+                Console.WriteLine($"Lose with bet: {BetAfterFindGenerator} and realNumber: {dit} != {client.history[^1]}");
+            }
+            
+            Console.WriteLine($"Current money: {client.account.money}");
+        }
+        Console.WriteLine("Done");
+    }
+    public static async Task Main()
+    {
+       await WinLcg();
+       await WinMt(GameMode.Mt);
+       await WinMt(GameMode.BetterMt);
     }
 }
-

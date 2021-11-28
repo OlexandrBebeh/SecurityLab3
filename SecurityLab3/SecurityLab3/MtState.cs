@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace SecurityLab3
 {
-    public class MtReverse
+    public class MtState
     {
+        public static readonly int N = 624;
+
         private const int W = 32;
-        private const int N = 624;
         private const int M = 397;
         private const int R = 31;
         private const int U = 11;
@@ -18,28 +21,26 @@ namespace SecurityLab3
         
         List<long> used = new();
         
-        private long ToUpper(long x)
+        private static long ToUpper(long x)
         {
-            return x & ((1L << W) - (1 << R));
+            return x & ((1L << W) - (1L << R));
         }
 
-        private long ToLower(long x)
+        private static long ToLower(long x)
         {
             return x & ((1L << R) - 1);
         }
 
-        private long TimesA(long x)
+        private static long TimesA(long x)
         {
             if ((x & 1) == 1)
             {
-                return (L >> 1) ^ A;
+                return (x >> 1) ^ A;
             }
-            else
-            {
-                return x >> 1;
-            }
+            
+            return x >> 1;
         }
-        private long UndoXorRightShift(long x, int shift)
+        private static long UndoXorRightShift(long x, int shift)
         {
             var res = x;
 
@@ -51,7 +52,7 @@ namespace SecurityLab3
             return res;
         }
 
-        private long UndoXorLeftShiftMask(long x, int shift, long mask)
+        private static long UndoXorLeftShiftMask(long x, int shift, long mask)
         {
             var window = (1 << shift) - 1;
             var res = x;
@@ -59,12 +60,13 @@ namespace SecurityLab3
             for (var i = 0; i < W / shift; i++)
             {
                 res ^= ((window & res) << shift) & mask;
+                window <<= shift;
             }
 
             return res;
         }
 
-        private long DecreaseInt(long x)
+        private static long IncreaseLong(long x)
         {
             long res = x;
             res ^= res >> U;
@@ -75,7 +77,7 @@ namespace SecurityLab3
             return res;
         }
 
-        private long IncreaseInt(long x)
+        private static long DecreaseLong(long x)
         {
             x = UndoXorRightShift(x, L);
             x = UndoXorLeftShiftMask(x, T, C);
@@ -87,19 +89,23 @@ namespace SecurityLab3
 
         public void Init(long[] lst)
         {
-            used.Clear();
-            foreach (var t in lst)
+            if (lst.Length < N)
             {
-                used.Add(IncreaseInt(t));
+                new InvalidOperationException("Logic error");
+            }
+            used.Clear();
+            for (var i = 0; i < N; i++)
+            {
+                used.Add(DecreaseLong(lst[i]));
             }
         }
 
         public long Predict()
         {
-            var nextVal = used[N - M] ^ TimesA(
-                ToUpper(used[N - 1]) | ToLower(used[N - 2]));
+            var nextVal = used[M] ^ TimesA(ToUpper(used[0]) | ToLower(used[1]));
             used.Add(nextVal);
-            var predicted = IncreaseInt(nextVal);
+            var predicted = IncreaseLong(nextVal);
+            used.Remove(used[0]);
 
             return predicted;
         }

@@ -54,7 +54,7 @@ namespace SecurityLab3
         {
             var response =
                 await client.GetAsync(
-                    $"{casinoURL}{playParam}{mod:g}?id={account.id}&bet={bet}&number={(int)number}");
+                    $"{casinoURL}{playParam}{mod:g}?id={account.id}&bet={bet}&number={number}");
 
             var text = await response.Content.ReadAsStringAsync();
             var json = JsonConvert.DeserializeObject<CasinoResponse>(text);
